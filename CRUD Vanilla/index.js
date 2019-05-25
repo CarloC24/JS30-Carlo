@@ -41,10 +41,13 @@ function add_a_button(item) {
   let button = document.createElement("button");
   button.innerText = "x";
   button.id = item.id;
-  button.addEventListener("click", e => {
-    alert(button.id);
-  });
+  button.addEventListener("click", deletehandler);
   item.appendChild(button);
+}
+function deletehandler(e) {
+  console.log(e.target.id);
+  let new_todos = todos.filter(todo => todo.id != e.target.id);
+  todos = new_todos;
 }
 add_todos();
 todo_form.addEventListener("submit", e => {
@@ -62,5 +65,4 @@ todo_form.addEventListener("submit", e => {
 todo_input.addEventListener("input", event => {
   event.stopPropagation();
   new_todo_holder = event.target.value;
-  console.log(new_todo_holder);
 });
