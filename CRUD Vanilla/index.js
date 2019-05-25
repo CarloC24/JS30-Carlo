@@ -26,6 +26,7 @@ function add_todos(todos_list = todos) {
     let item = document.createElement("li");
     item.textContent = todo.name;
     item.id = todo.id;
+    // item.setAttribute("data-key", todo.id);
     add_a_button(item);
     item_list.appendChild(item);
   });
@@ -34,6 +35,7 @@ function add_a_new_todo(todo) {
   let item = document.createElement("li");
   item.textContent = todo.name;
   item.id = todos.length;
+  //   item.setAttribute("data-key", todos.length);
   add_a_button(item);
   item_list.appendChild(item);
 }
@@ -46,6 +48,8 @@ function add_a_button(item) {
 }
 function deletehandler(e) {
   console.log(e.target.id);
+  let delete_todo = document.querySelector(`li[id="${e.target.id}"]`);
+  delete_todo.parentNode.removeChild(delete_todo);
   let new_todos = todos.filter(todo => todo.id != e.target.id);
   todos = new_todos;
 }
